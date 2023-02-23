@@ -1,16 +1,4 @@
-import { useState } from "react";
-import { Box } from "@chakra-ui/react";
-import "@/styles/Musics.module.css";
-import Music from "./Music.js";
-
-export default function Musics() {
-  const [musics, setMusics] = useState([
-    {
-      single: "Sunday Bloody Sunday",
-      artist: "U2",
-      cover: "/U2_Sunday_Bloody_Sunday_cover.png",
-      id: 0,
-    },
+export const musicsList = [
     {
       single: "Yellow Submarine",
       artist: "The Beatles",
@@ -37,7 +25,7 @@ export default function Musics() {
     },
     {
       single: "Bohemain Rhapsody",
-      artist: "Mika",
+      artist: "Queen",
       cover: "/bohemian_rhapsody.png",
       id: 5,
     },
@@ -53,15 +41,10 @@ export default function Musics() {
       cover: "/under_pressure.png",
       id: 7,
     },
-  ]);
-
-  return (
-    <>
-      <Box display="flex" alignItems="baseline" className="scrollable-section">
-        {musics.map((music) => (
-          <Music key={music.id} {...music}></Music>
-        ))}
-      </Box>
-    </>
-  );
-}
+    {
+      single: "Sunday Bloody Sunday",
+      artist: "U2",
+      cover: "/U2_Sunday_Bloody_Sunday_cover.png",
+      id: 8,
+    },
+  ];
