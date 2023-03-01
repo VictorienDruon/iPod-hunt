@@ -1,48 +1,50 @@
-import { useState } from "react";
-import {musicsList} from "utils/musicsList.js";
-import Cover from "./Cover.js"
+import { useState, useEffect, useRef } from "react";
+import {coversList} from "utils/coversList.js";
 
 export default function CoverFlow() {
-  const [musics, setMusics] = useState(musicsList);
-  const [selectedIndex, setSelectedIndex] = useState(Math.floor((musics.length - 1) / 2));
-  const selectedMusic = musics[selectedIndex];
+  const [covers, setCovers] = useState(coversList);
+  const [selectedCover, setSelectedCover] = useState({
+    single: "Are You Experienced",
+    artist: "Jimi Hendrix",
+    cover: "/are_you_experienced.png",
+    id: 2
+  });
+  const selectedCoverRef = useRef();
+  const coverFlowRef = useRef();
 
-  const handlePreviousCLick = () => setSelectedIndex(prev => prev > 0 ? prev - 1 : prev);
-  const handleNextCLick = () => setSelectedIndex(prev => prev < musics.length - 1 ? prev + 1 : prev);
+  const handleCoverFlowScroll = () => {
+    let closestDistance = Infinity;
+    let closestCover = null;
+    covers.forEach(cover => {
+      const coverContainer = coverFlowRef.current.querySelector(`[data-id="${cover.id}"]`);
+      const distance = Math.abs( coverFlowRef.current.offsetWidth / 2 - coverContainer.offsetWidth / 2 - coverContainer.getBoundingClientRect().x);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestCover = cover;
+      }
+    })
+    setSelectedCover(closestCover);
+  }
 
 
   return (<>
-    <div className="cover-flow" >
-      <div className="cover-flow-left">
-        {musics.map((music, index) => {
-          if (index < selectedIndex) {
-            return <Cover key={index} className="cover left" details={music} />;
-          } else {
-            return null;
-          }
-          })}
+  <div className="cover-flow" onScroll={handleCoverFlowScroll} ref={coverFlowRef} >
+    {covers.map(cover => (
+      <div
+        key={cover.id}
+        data-id={cover.id}
+        ref={selectedCover?.id === cover.id ? selectedCoverRef : null}
+        className={`cover ${selectedCover?.id === cover.id 
+          ? "selected"
+          : (selectedCover?.id > cover.id ? "left" : "right")}
+        `}
+      >
+        <img src={cover.cover} alt={`${cover.single} cover`} />
       </div>
-      <div className="cover-flow-selected">
-        <Cover className="cover selected" details={selectedMusic} />
-      </div>
-      <div className="cover-flow-right">
-        {musics.map((music, index) => {
-          if (index > selectedIndex) {
-            return <Cover key={index} className="cover right" details={music} />;
-          } else {
-            return null;
-          }
-        })}
-      </div>
+    ))}
   </div>
   <div className="title">
-    <h3>{selectedMusic.single}<br/>{selectedMusic.artist}</h3>
+    <h3>{selectedCover?.single}<br/>{selectedCover?.artist}</h3>
   </div>
-
-
-    <div display="flex">
-      <button onClick={handlePreviousCLick} >Previous</button>
-      <button onClick={handleNextCLick} >Next</button>
-    </div>
   </>);
 }
