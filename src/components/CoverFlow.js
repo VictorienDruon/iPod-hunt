@@ -50,11 +50,14 @@ export default function CoverFlow() {
         }}
       >
         <img src={cover.cover} alt={`${cover.single} cover`} onClick={handleCoverClick} />
+        <div style={{backgroundColor: "black", marginTop: "-10px"}}>
+          <img className="cover-mirror" src={cover.cover} alt={`${cover.single} cover mirror`}/>
+        </div>
       </div>
     ))}
   </div>
   <div className="title">
-    <h3>{selectedCover.single}<br/>{selectedCover.artist}</h3>
+    <h4>{selectedCover.single}<br/>{selectedCover.artist}</h4>
   </div>
   </>);
 }
