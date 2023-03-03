@@ -2,45 +2,59 @@ body {
     background-color: black;
 }
 
-.cover-flow {
-    display: flex;
-    align-items: flex-start;
-    height:  720px; /* TODO responsive */
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+    .cover-flow-container {
+        position: relative;
+        border: 2px solid;
+        border-color: white;
+        border-radius: 20px;
+        overflow: hidden;
+    }
 
-.cover-flow::-webkit-scrollbar {
-    display: none;
-}
+        .cover-flow {
+            display: flex;
+            padding: 5% 50% 0 50%;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-.cover {
-    position: relative;
-    transform-style: preserve-3d;
-}
+        .cover-flow::-webkit-scrollbar {
+            display: none;
+        }
 
-.cover.left {
-    transform: perspective(800px) rotateY(45deg);
-    margin: 0px -60px 0px -30px;  /* TODO responsive */
-}
+            .cover {
+                background-color: black;
+            }
 
-.cover.right {
-    transform: perspective(800px) rotateY(-45deg);;
-    margin: 0px -30px 0px -60px;  /* TODO responsive */
-}
+            .cover.selected {
+                transform: scale(1.2);
+            }
 
-.cover.selected {
-    transform: scale(1.2);
-}
+            .cover.left {
+                transform: perspective(600px) rotateY(45deg);
+                margin: 0px -80px 0px -40px;  /* TODO responsive */
+            }
 
-.cover-mirror {
-    transform: scaleY(-1);
-    opacity: 0.4;
-}
+            .cover.right {
+                transform: perspective(600px) rotateY(-45deg);;
+                margin: 0px -40px 0px -80px;  /* TODO responsive */
+            }
 
-.title {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-}
+                .mirror-effect {
+                    margin: -2% 0 -60% 0;
+                    transform: scaleY(-1);
+                    opacity: 0.3;
+                }
+
+        .title-wrapper {
+            position: absolute;
+            left: 46%;
+            bottom: 3%
+        }
+
+            .title {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            }
