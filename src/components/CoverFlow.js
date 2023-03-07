@@ -32,20 +32,21 @@ export default function CoverFlow() {
   }
 
   return (
-  <div className="cover-flow-container" >
-    <div className="cover-flow" onScroll={handleCoverFlowScroll} ref={coverFlowRef} >
+  <div className="container" >
+
+    <div className="cover-flow" ref={coverFlowRef} onScroll={handleCoverFlowScroll}  >
       {covers.map((cover, index) => (
         <Cover 
           key={cover.id}
           details={cover}
           className={
             selectedCover.id === cover.id 
-              ? "cover selected"
+              ? "selected"
               : selectedCover.id > cover.id
-                ? "cover left"
-                : "cover right"
+                ? "left"
+                : "right"
             }
-          ref={selectedCover.id === cover.id ? selectedCoverRef : null}
+          refProp={selectedCover.id === cover.id ? selectedCoverRef : null}
           zIndex={
             selectedCover.id === cover.id
             ? covers.length + 1
@@ -57,8 +58,11 @@ export default function CoverFlow() {
         />
       ))}
     </div>
-    <div className="title-wrapper" style={{zIndex: covers.length + 1}}>
+    
+    <div className="title-container" style={{zIndex: covers.length + 1}}>
         <h5 className="title">{selectedCover.single}<br/>{selectedCover.artist}</h5>
     </div>
-  </div>);
+
+  </div>
+  );
 }

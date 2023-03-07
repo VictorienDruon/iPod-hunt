@@ -2,8 +2,9 @@ body {
     background-color: black;
 }
 
-    .cover-flow-container {
+    .container {
         position: relative;
+        max-height: 70vh;
         border: 2px solid;
         border-color: white;
         border-radius: 20px;
@@ -23,38 +24,51 @@ body {
             display: none;
         }
 
-            .cover {
+            .covers-container {
+                position: relative;
                 background-color: black;
             }
 
-            .cover.selected {
-                transform: scale(1.2);
-            }
-
-            .cover.left {
-                transform: perspective(600px) rotateY(45deg);
-                margin: 0px -80px 0px -40px;  /* TODO responsive */
-            }
-
-            .cover.right {
-                transform: perspective(600px) rotateY(-45deg);;
-                margin: 0px -40px 0px -80px;  /* TODO responsive */
-            }
-
-                .mirror-effect {
-                    margin: -2% 0 -60% 0;
-                    transform: scaleY(-1);
-                    opacity: 0.3;
+                .covers-container.selected {
+                    transform: scale(1.2);
                 }
 
-        .title-wrapper {
+                .covers-container.left {
+                    transform: perspective(600px) rotateY(45deg);
+                    margin-left: -10vh;
+                    margin-right: -5vh;
+                }
+
+                .covers-container.right {
+                    transform: perspective(600px) rotateY(-45deg);
+                    margin-left: -5vh;
+                    margin-right: -10vh;
+                }
+
+                    .cover, .cover-mirror {
+                        max-width: 40vh;
+                        max-height: 40vh;
+                    }
+
+                    .cover-mirror {
+                        margin-top: -2%;
+                        margin-bottom: -60%;
+                        transform: scaleY(-1);
+                        opacity: 0.3;
+                    }
+
+
+        .title-container {
             position: absolute;
-            left: 46%;
-            bottom: 3%
+            bottom: 0;
+            left: 50%;
         }
 
             .title {
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
+                position: relative;
+                left: -50%;
+                margin: 0;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                color: white;
             }
