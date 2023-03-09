@@ -8,14 +8,15 @@ export default function CoverFlow() {
   const [selectedCover, setSelectedCover] = useState(covers[Math.floor((covers.length - 1) / 2)]);
   const selectedCoverRef = useRef();
 
-  // useEffect(() => coverFlowRef.current.scrollTo(coverFlowRef.current.offsetWidth / 2, 0), []);
+  useEffect(() => coverFlowRef.current.scrollTo(coverFlowRef.current.scrollWidth / 2 - coverFlowRef.current.offsetWidth / 2 - selectedCoverRef.current.offsetWidth / 2, 0), []);
 
   const handleCoverFlowScroll = () => {
     let closestDistance = Infinity;
     let closestCover = null;
     covers.forEach(cover => {
       const coverContainer = coverFlowRef.current.querySelector(`[data-id="${cover.id}"]`);
-      const distance = Math.abs( coverFlowRef.current.offsetWidth / 2 - coverContainer.offsetWidth / 2 - coverContainer.getBoundingClientRect().x);
+      const distance = Math.abs(coverFlowRef.current.offsetWidth / 2 - coverContainer.offsetWidth / 2 - coverContainer.getBoundingClientRect().x);
+      
       if (distance < closestDistance) {
         closestDistance = distance;
         closestCover = cover;

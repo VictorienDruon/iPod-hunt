@@ -9,8 +9,8 @@ export default function Cover({details, refProp, className, zIndex, handleCoverC
         style={{ zIndex: zIndex}}
         onClick={handleCoverClick}
     >
-        <img className={`cover ${className}`} src={cover} alt={`${single} cover`}/>
-        <img className={`cover-mirror ${className}`} src={cover} alt={`${cover} cover mirror`}/>
+        <img className="cover" src={cover} alt={`${single} cover`}/>
+        <img className="cover-mirror" src={cover} alt={`${cover} cover mirror`}/>
     </div>
     )
 }
